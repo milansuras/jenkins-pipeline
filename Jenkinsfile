@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        GOOGLE_CLOUD_KEYFILE = credentials('gcp-credentials')  // We'll add this credential later
+        //GOOGLE_CLOUD_KEYFILE = credentials('gcp-credentials')  // We'll add this credential later
         GAR_LOCATION = 'asia-south1-docker.pkg.dev'
         PROJECT_ID = 'milan-dev-451317'  // Replace with your project ID
         REPOSITORY = 'jenkins-cicd-stack'  // Your GAR repository name
