@@ -34,7 +34,7 @@ pipeline {
                         def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/java-app:${BUILD_NUMBER}"
                         sh """
                             docker build -t ${imageTag} .
-                            docker tag ${imageTag} 
+                            docker tag ${imageTag} ${imageTag}
                             docker push ${imageTag}
                         """
                     }
@@ -50,7 +50,7 @@ pipeline {
                         sh """
                             set -e
                             docker build -t ${imageTag} .
-                            docker tag ${imageTag} 
+                            docker tag ${imageTag} ${imageTag}
                             docker push ${imageTag}
                         """
                     }
@@ -66,7 +66,7 @@ pipeline {
                         sh """
                             set -e
                             docker build -t ${imageTag} .
-                            docker tag ${imageTag} 
+                            docker tag ${imageTag} ${imageTag}
                             docker push ${imageTag}
                         """
                     }
