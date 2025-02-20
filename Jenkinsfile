@@ -18,7 +18,7 @@ pipeline {
         
         stage('Build and Push Java Backend') {
             steps {
-                dir('backend-java') {
+                dir('java-springboot') {
                     script {
                         def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/java-app:${BUILD_NUMBER}"
                         sh """
@@ -35,7 +35,7 @@ pipeline {
 
         stage('Build and Push Python Backend') {
             steps {
-                dir('backend-python') {
+                dir('flask') {
                     script {
                         def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/python-app:${BUILD_NUMBER}"
                         sh """
@@ -50,7 +50,7 @@ pipeline {
             }
         }
 
-        stage('Build and Push Frontend') {
+        stage('react-todo') {
             steps {
                 dir('frontend') {
                     script {
