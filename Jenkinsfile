@@ -6,7 +6,7 @@ pipeline {
         GAR_LOCATION = 'asia-south1-docker.pkg.dev'
         PROJECT_ID = 'milan-dev-451317'  // Replace with your project ID
         REPOSITORY = 'jenkins-cicd-satck' 
-        BUILD_NUMBER = "latest" // Your GAR repository name
+        BUILD_NUMBER = "" // Your GAR repository name
     }
 
     stages {
