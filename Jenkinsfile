@@ -22,7 +22,7 @@ pipeline {
                     script {
                         def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/java-app:${BUILD_NUMBER}"
                         sh """
-                            sh "ls -R backend-java"
+                        
                             docker build -t ${imageTag} .
                             docker tag ${imageTag} ${imageTag}-latest
                             docker push ${imageTag}
@@ -52,7 +52,7 @@ pipeline {
 
         stage('react-todo') {
             steps {
-                dir('frontend') {
+                dir('react-todo') {
                     script {
                         def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/frontend-app:${BUILD_NUMBER}"
                         sh """
