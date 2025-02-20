@@ -23,6 +23,7 @@ pipeline {
                         def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/java-app:${BUILD_NUMBER}"
                         sh """
                             set -e
+                            cd java-springboot
                             docker build -t ${imageTag} .
                             docker tag ${imageTag} ${imageTag}-latest
                             docker push ${imageTag}
