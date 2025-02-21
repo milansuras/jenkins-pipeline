@@ -30,7 +30,8 @@ pipeline {
             steps {                 
                 dir('java-springboot') {                     
                     script {                         
-                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/java-app:${env.BUILD_NUMBER}"                         
+                       def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/frontend-app:${env.BUILD_NUMBER}-${env.BUILD_ID}"
+
                         sh """                             
                             docker build -t ${imageTag} -f Dockerfile .                              
                             docker tag ${imageTag} ${imageTag}                             
@@ -45,7 +46,8 @@ pipeline {
             steps {                 
                 dir('flask') {                     
                     script {                         
-                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/python-app:${BUILD_NUMBER}"                         
+                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/frontend-app:${env.BUILD_NUMBER}-${env.BUILD_ID}"
+
                         sh """                             
                             set -e                             
                             docker build -t ${imageTag} .                             
@@ -61,7 +63,7 @@ pipeline {
             steps {                 
                 dir('react-todo') {                     
                     script {                         
-                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/frontend-app:${BUILD_NUMBER}"                         
+                       def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/frontend-app:${env.BUILD_NUMBER}-${env.BUILD_ID}"
                         sh """                             
                             set -e                             
                             docker build -t ${imageTag} .                             
