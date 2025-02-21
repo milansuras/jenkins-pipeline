@@ -2,12 +2,11 @@ pipeline {
     agent any
 
     environment {
-        // GOOGLE_CLOUD_KEYFILE = credentials('gcp-credentials')  // Add GCP service account key in Jenkins
+
         GAR_LOCATION = 'asia-south1-docker.pkg.dev'
-        PROJECT_ID = 'milan-dev-451317'  // Replace with your project ID
+        PROJECT_ID = 'milan-dev-451317'  
         REPOSITORY = 'jenkins-cicd-satck' 
-        BUILD_NUMBER = "duck" // Your GAR repository name
-    }
+        BUILD_NUMBER = "duck" 
 
     stages {
         stage('Checkout') {
@@ -31,9 +30,9 @@ pipeline {
             steps {
                 dir('java-springboot') {
                     script {
-                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/java-app:${BUILD_NUMBER}"
+                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/java-app:${env.BUILD_NUMBER}
                         sh """
-                            docker build -t ${imageTag} .
+                            docker build -t ${imageTag} -f Dockerfile . 
                             docker tag ${imageTag} ${imageTag}
                             docker push ${imageTag}
                         """
