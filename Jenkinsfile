@@ -5,7 +5,7 @@ pipeline {
         GAR_LOCATION = 'asia-south1-docker.pkg.dev'         
         PROJECT_ID = 'milan-dev-451317'           
         REPOSITORY = 'jenkins-cicd-satck'          
-        BUILD_NUMBER = "duck"       
+        BUILD_NUMBER = "latest  
     }    
 
     stages {         
@@ -30,7 +30,7 @@ pipeline {
             steps {                 
                 dir('java-springboot') {                     
                     script {                         
-                       def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/frontend-app:${env.BUILD_NUMBER}-${env.BUILD_ID}"
+                       def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/frontend-app:${env.BUILD_NUMBER}"
 
                         sh """                             
                             docker build -t ${imageTag} -f Dockerfile .                              
@@ -46,7 +46,7 @@ pipeline {
             steps {                 
                 dir('flask') {                     
                     script {                         
-                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/frontend-app:${env.BUILD_NUMBER}-${env.BUILD_ID}"
+                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/frontend-app:${env.BUILD_NUMBER}"
 
                         sh """                             
                             set -e                             
@@ -63,7 +63,7 @@ pipeline {
             steps {                 
                 dir('react-todo') {                     
                     script {                         
-                       def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/frontend-app:${env.BUILD_NUMBER}-${env.BUILD_ID}"
+                       def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/frontend-app:${env.BUILD_NUMBER}"
                         sh """                             
                             set -e                             
                             docker build -t ${imageTag} .                             
