@@ -30,7 +30,7 @@ pipeline {
             steps {
                 dir('java-springboot') {
                     script {
-                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/java-app:${env.BUILD_NUMBER}
+                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/java-app:${env.BUILD_NUMBER}"
                         sh """
                             docker build -t ${imageTag} -f Dockerfile . 
                             docker tag ${imageTag} ${imageTag}
