@@ -4,8 +4,9 @@ pipeline {
     environment {          
         GAR_LOCATION = 'asia-south1-docker.pkg.dev'         
         PROJECT_ID = 'milan-dev-451317'           
-        REPOSITORY = 'jenkins-cicd-satck'          
+        REPOSITORY = 'jenkins-cicd-stack'          
         BUILD_NUMBER = "latest"
+        NEW_TAG = "${env.BUILD_NUMBER}-${currentBuild.startTimeInMillis}"
     }    
 
     stages {         
@@ -30,12 +31,14 @@ pipeline {
             steps {                 
                 dir('java-springboot') {                     
                     script {                         
-                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/java-backend:${env.BUILD_NUMBER}"
+                        def latestTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/java-backend:latest"
+                        def versionedTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/java-backend:${env.NEW_TAG}"
 
                         sh """  
                             set -e                           
-                            docker build -t ${imageTag} -f Dockerfile .                            
-                            docker push ${imageTag}                         
+                            docker build -t ${latestTag} -t ${versionedTag} -f Dockerfile .                            
+                            docker push ${latestTag}                         
+                            docker push ${versionedTag}                         
                         """                     
                     }                 
                 }             
@@ -46,12 +49,14 @@ pipeline {
             steps {                 
                 dir('flask') {                     
                     script {                         
-                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/python-backend:${env.BUILD_NUMBER}"
+                        def latestTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/python-backend:latest"
+                        def versionedTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/python-backend:${env.NEW_TAG}"
 
                         sh """  
                             set -e                           
-                            docker build -t ${imageTag} .                            
-                            docker push ${imageTag}                         
+                            docker build -t ${latestTag} -t ${versionedTag} .                            
+                            docker push ${latestTag}                         
+                            docker push ${versionedTag}                         
                         """                     
                     }                 
                 }             
@@ -62,12 +67,14 @@ pipeline {
             steps {                 
                 dir('react-todo') {                     
                     script {                         
-                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/react-frontend:${env.BUILD_NUMBER}"
-                        
+                        def latestTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/react-frontend:latest"
+                        def versionedTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/react-frontend:${env.NEW_TAG}"
+
                         sh """  
                             set -e                           
-                            docker build -t ${imageTag} .                            
-                            docker push ${imageTag}                         
+                            docker build -t ${latestTag} -t ${versionedTag} .                            
+                            docker push ${latestTag}                         
+                            docker push ${versionedTag}                         
                         """                     
                     }                 
                 }             
@@ -75,3 +82,4 @@ pipeline {
         }     
     } 
 }
+
