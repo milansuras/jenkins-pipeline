@@ -4,6 +4,9 @@ FROM node:18-alpine AS build
 # Set the working directory inside the container
 WORKDIR /app
 
+
+RUN echo "This is a new layer" > /new_layer.txt
+
 # Copy package.json and package-lock.json before installing dependencies
 COPY package*.json ./
 
