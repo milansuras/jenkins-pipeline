@@ -30,11 +30,11 @@ pipeline {
             steps {                 
                 dir('java-springboot') {                     
                     script {                         
-                       def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/frontend-app:${env.BUILD_NUMBER}"
+                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/java-backend:${env.BUILD_NUMBER}"
 
-                        sh """                             
-                            docker build -t ${imageTag} -f Dockerfile .                              
-                            docker tag ${imageTag} ${imageTag}                             
+                        sh """  
+                            set -e                           
+                            docker build -t ${imageTag} -f Dockerfile .                            
                             docker push ${imageTag}                         
                         """                     
                     }                 
@@ -46,12 +46,11 @@ pipeline {
             steps {                 
                 dir('flask') {                     
                     script {                         
-                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/frontend-app:${env.BUILD_NUMBER}"
+                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/python-backend:${env.BUILD_NUMBER}"
 
-                        sh """                             
-                            set -e                             
-                            docker build -t ${imageTag} .                             
-                            docker tag ${imageTag} ${imageTag}                             
+                        sh """  
+                            set -e                           
+                            docker build -t ${imageTag} .                            
                             docker push ${imageTag}                         
                         """                     
                     }                 
@@ -63,11 +62,11 @@ pipeline {
             steps {                 
                 dir('react-todo') {                     
                     script {                         
-                       def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/frontend-app:${env.BUILD_NUMBER}"
-                        sh """                             
-                            set -e                             
-                            docker build -t ${imageTag} .                             
-                            docker tag ${imageTag} ${imageTag}                             
+                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/react-frontend:${env.BUILD_NUMBER}"
+                        
+                        sh """  
+                            set -e                           
+                            docker build -t ${imageTag} .                            
                             docker push ${imageTag}                         
                         """                     
                     }                 
