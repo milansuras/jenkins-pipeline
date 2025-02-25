@@ -11,4 +11,5 @@ RUN echo "This is a new layer" > /new_layer.txt
 RUN echo "This is a new layerc fjebi" > /app.txt
 RUN echo "iujebfiu"
 RUN echo "newndwnen" > /new.txt
+RUN echo "newjeiuhdik" > /app2.txt
 CMD ["./mvnw", "spring-boot:run"]
