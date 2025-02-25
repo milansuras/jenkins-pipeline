@@ -42,28 +42,12 @@ pipeline {
         //     }         
         // }          
 
-        stage('Build and Push Python Backend') {             
-            steps {                 
-                dir('flask') {                     
-                    script {                         
-                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/python-backend:${env.BUILD_NUMBER}"
-
-                        sh """  
-                            set -e                           
-                            docker build -t ${imageTag} .                            
-                            docker push ${imageTag}                         
-                        """                     
-                    }                 
-                }             
-            }         
-        }          
-
-        // stage('Build and Push React Frontend') {             
+        // stage('Build and Push Python Backend') {             
         //     steps {                 
-        //         dir('react-todo') {                     
+        //         dir('flask') {                     
         //             script {                         
-        //                 def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/react-frontend:${env.BUILD_NUMBER}"
-                        
+        //                 def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/python-backend:${env.BUILD_NUMBER}"
+
         //                 sh """  
         //                     set -e                           
         //                     docker build -t ${imageTag} .                            
@@ -72,7 +56,23 @@ pipeline {
         //             }                 
         //         }             
         //     }         
-        // }     
+        // }          
+
+        stage('Build and Push React Frontend') {             
+            steps {                 
+                dir('react-todo') {                     
+                    script {                         
+                        def imageTag = "${GAR_LOCATION}/${PROJECT_ID}/${REPOSITORY}/react-frontend:${env.BUILD_NUMBER}"
+                        
+                        sh """  
+                            set -e                           
+                            docker build -t ${imageTag} .                            
+                            docker push ${imageTag}                         
+                        """                     
+                    }                 
+                }             
+            }         
+        }     
     } 
 }
 

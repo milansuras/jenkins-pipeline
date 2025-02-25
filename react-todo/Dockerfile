@@ -8,6 +8,10 @@ WORKDIR /app
 RUN echo "This is a new layer" > /new_layer.txt
 RUN echo "This is a new layerc fjebi" > /app.txt
 
+RUN echo "helmeo"
+
+RUN echo "hello" > /new.txt
+
 # Copy package.json and package-lock.json before installing dependencies
 COPY package*.json ./
 
