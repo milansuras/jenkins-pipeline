@@ -14,6 +14,8 @@ COPY . .
 
 RUN echo "This is a new layer" > /new_layer.txt
 
+RUN echo "This is a new layerc fjebi" > /app.txt
+
 # Expose the port the app runs on
 EXPOSE 5000
 
