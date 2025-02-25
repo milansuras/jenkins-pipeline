@@ -14,6 +14,7 @@ COPY . .
 
 RUN echo "This is a new layer" > /new_layer.txt
 RUN echo "hello sadddid" > /new.txt
+RUN echo "newnenwenwwewew" > new2.txt
 RUN echo "This is a new layerc fjebi" > /app.txt
 
 # Expose the port the app runs on
